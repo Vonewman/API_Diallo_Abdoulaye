@@ -32,26 +32,6 @@ class Model:
         cls.mydb.commit()
         cls.mydb.close()
 
-    @classmethod
-    def retrieve_albums(cls):
-        cls.retrieve_from(Album)
-
-    @classmethod
-    def retrieve_photos(cls):
-        cls.retrieve_from(Photo)
-
-
-    @classmethod
-    def retrieve_posts(cls):
-        cls.retrieve_from(Post)
-
-
-
-    @classmethod
-    def retrieve_comments(cls):
-        cls.retrieve_from(Comment)
-
-
     # this insert the User_data data in the database
     @classmethod
     def insert_data_in_User(cls):

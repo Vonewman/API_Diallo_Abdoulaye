@@ -38,7 +38,7 @@ class View:
                 cls.selection()
         except KeyboardInterrupt:
             print()
-            sys.exit('Merci! A bientot ..')
+            sys.exit('Merci! A bientot ...')
 
 
 
