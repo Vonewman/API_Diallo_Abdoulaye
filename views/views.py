@@ -1,7 +1,7 @@
-# ici on doit mettre l'affichage de notre systeme
 import sys
 sys.path.insert(0, '../controllers/')
 
+# sys.path.append("..")
 from controller import Controller
 
 
@@ -23,8 +23,8 @@ class View:
     def selection(cls):
         try:
             while len(cls.selection_choice) > 0:
-                for ind, choice in enumerate(cls.selection_choice):
-                    print(f"                {ind + 1}.{choice}")
+                for indice, choice in enumerate(cls.selection_choice):
+                    print(f"                {indice + 1}.{choice}")
                 print("                press 'ctrl + c': to quit")
                 try:
                     schoice = int(input())

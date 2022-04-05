@@ -16,7 +16,7 @@ class Model:
     api_url    = 'https://jsonplaceholder.typicode.com/'
 
     @classmethod
-    def init_db(cls):
+    def database_initializer(cls):
         cls.mydb = mysql.connector.connect(
             host='localhost',
             database='projet_api',
@@ -31,24 +31,6 @@ class Model:
     def close_db(cls):
         cls.mydb.commit()
         cls.mydb.close()
-
-    @classmethod
-    def retrieve_from(cls, my_class):
-        mycursor = cls.init_db()
-        mycursor.execute(my_class.select())
-        result = mycursor.fetchall()
-        for res in result:
-            print(res)
-        print()
-
-    @classmethod
-    def retrieve_User_data(cls):
-        cls.retrieve_from(User)
-
-    @classmethod
-    def retrieve_Todos_data(cls):
-        cls.retrieve_from(Todo)
-
 
     @classmethod
     def retrieve_albums(cls):
@@ -73,7 +55,7 @@ class Model:
     # this insert the User_data data in the database
     @classmethod
     def insert_data_in_User(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj = requests.get(cls.api_url + 'users').json()
         for user in json_obj:
             id        = user.get('id')
@@ -123,7 +105,7 @@ class Model:
 
     @classmethod
     def insert_data_in_Todos(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj = requests.get(cls.api_url + 'todos').json()
         for todo in json_obj:
             userId      = todo.get('userId')
@@ -139,7 +121,7 @@ class Model:
 
     @classmethod
     def insert_data_in_posts(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj = requests.get(cls.api_url + 'posts').json()
         for post in json_obj:
             userId  = post.get('userId')
@@ -156,7 +138,7 @@ class Model:
 
     @classmethod
     def insert_data_in_comments(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj   = requests.get(cls.api_url + 'comments').json()
         for comment in json_obj:
             postId    = comment.get('postId')
@@ -174,7 +156,7 @@ class Model:
 
     @classmethod
     def insert_data_in_albums(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj = requests.get(cls.api_url + 'albums').json()
         for album in json_obj:
             userId    = album.get('userId')
@@ -191,7 +173,7 @@ class Model:
 
     @classmethod
     def insert_data_in_photos(cls):
-        mycursor = cls.init_db()
+        mycursor = cls.database_initializer()
         json_obj = requests.get(cls.api_url + 'photos').json()
         for photo in json_obj:
             albumId         = photo.get('albumId')
@@ -205,3 +187,37 @@ class Model:
             mycursor.execute(photo_instance.insert())
         cls.close_db()
 
+
+    @classmethod
+    def retrieve_from(cls, my_class):
+        mycursor = cls.database_initializer()
+        mycursor.execute(my_class.select())
+        result = mycursor.fetchall()
+        for res in result:
+            print(res)
+        print()
+
+    @classmethod
+    def retrieve_User_data(cls):
+        cls.retrieve_from(User)
+
+    @classmethod
+    def retrieve_Todos_data(cls):
+        cls.retrieve_from(Todo)
+
+    @classmethod
+    def retrieve_albums(cls):
+        cls.retrieve_from(Album)
+
+    @classmethod
+    def retrieve_photos(cls):
+        cls.retrieve_from(Photo)
+
+
+    @classmethod
+    def retrieve_posts(cls):
+        cls.retrieve_from(Post)
+
+    @classmethod
+    def retrieve_comments(cls):
+        cls.retrieve_from(Comment)
