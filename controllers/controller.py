@@ -1,7 +1,6 @@
 import sys
 sys.path.insert(0, '../models/')
 
-
 from data_insertion import Model
 
 
