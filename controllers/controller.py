@@ -33,7 +33,7 @@ class Controller:
     def display_model(cls, class_):
         if class_ == 'all':
             for display in cls.displayer.get(class_):
-                displayz()
+                display()
         else:
             cls.displayer.get(class_)()
 
