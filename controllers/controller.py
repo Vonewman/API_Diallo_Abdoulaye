@@ -32,8 +32,8 @@ class Controller:
     @classmethod
     def display_model(cls, class_):
         if class_ == 'all':
-            for prep in cls.displayer.get(class_):
-                prep()
+            for display in cls.displayer.get(class_):
+                displayz()
         else:
             cls.displayer.get(class_)()
 
